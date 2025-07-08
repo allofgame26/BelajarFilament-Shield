@@ -14,12 +14,14 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use stdClass;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class StudentResource extends Resource
@@ -28,7 +30,7 @@ class StudentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = "Student";
+    protected static ?string $navigationLabel = "Data Murid";
 
     public static function form(Form $form): Form
     {
@@ -74,6 +76,16 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('index')->state(
+                            static function (HasTable $livewire, stdClass $rowLoop): string {
+                                return (string) (
+                                    $rowLoop->iteration +
+                                    ($livewire->getTableRecordsPerPage() * (
+                                        $livewire->getTablePage() - 1
+                                    ))
+                                );
+                            }
+                        ),
                 ImageColumn::make('profile')
                     ->label('Foto Profil'),
                 TextColumn::make('nis')
@@ -113,5 +125,16 @@ class StudentResource extends Resource
             'create' => Pages\CreateStudent::route('/create'),
             'edit' => Pages\EditStudent::route('/{record}/edit'),
         ];
+    }
+
+    public static function getLabel(): ?string
+    {
+        $locale = app()->getLocale();
+
+        if($locale == 'id'){
+            return "Murid";
+        } else {
+            return "Student";
+        }
     }
 }
