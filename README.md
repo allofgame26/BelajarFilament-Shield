@@ -34,3 +34,14 @@ dengan Class => use Filament\Tables\Contracts\HasTable;
 Membuat Translation (Error) : 
 php artisan vendor:publish --tag=filament-panels-translations
 merubah di app.php => 'locale' => 'id', mengganti nama Dashboard berada di lang id nya
+
+5. Relation Manager
+Menggunakan resource baru yaitu filament-resource-relation :
+
+"php artisan make:filament-relation-manager CategoryResource posts title"
+
+CategoryResource is the name of the resource class for the owner (parent) model.
+posts is the name of the relationship you want to manage.
+title is the name of the attribute that will be used to identify posts.
+
+dan jangan lupa untuk membuat / memanggil formnya di dalam File Main Resource 

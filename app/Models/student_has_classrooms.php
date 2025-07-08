@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periode extends Model
+class student_has_classrooms extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
-    public function homerooms(){
-        return $this->hasMany(homerooms::class,'periode_id','id');
-    }
 }
