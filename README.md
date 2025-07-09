@@ -45,3 +45,15 @@ posts is the name of the relationship you want to manage.
 title is the name of the attribute that will be used to identify posts.
 
 dan jangan lupa untuk membuat / memanggil formnya di dalam File Main Resource 
+
+6 Theme (Tema)
+Memasukkan Create Custom  Theme : php artisan make:filament-theme
+
+Pemberitahuan : 
+ WARN  Action is required to complete the theme setup:  
+
+  ⇂ First, add a new item to the `input` array of `vite.config.js`: `resources/css/filament/admin/theme.css`  
+  ⇂ Next, register the theme in the admin panel provider using `->viteTheme('resources/css/filament/admin/theme.css')`
+  ⇂ Finally, run `npm run build` to compile the theme
+
+Jika Sudah Masuk kedalam Resource->css->filament->theme.css, klik import pertama, klik index.css
